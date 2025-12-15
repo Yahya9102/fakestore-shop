@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakestore produkter</title>
+</head>
+<body>
+    <h1>Min fakestore shop!</h1>
+
+    {% if products|length == 0%}
+    <p>Inga produkter hittades i databasen ännu, fetcha produkterna först /sync</p>
+    {% else %}
+    <ul>
+        {% for p in products %}
+        <li>
+            <br>{{p.title}}</br>
+            - {{p.price}}
+            <br />
+
+            <p>Kategori: {{p.category}}</p>
+            
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
