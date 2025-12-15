@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 
-SERVER1_BASE_URL = "http://localhost:5001/products"
+SERVER1_BASE_URL = "http://service1:5001/products"
 
 
 
