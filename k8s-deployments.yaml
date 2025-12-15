@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service1
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service1
+  template:
+    metadata:
+      labels:
+        app: service1    
+    spec:
+      containers:
+      - name: service1
+        image: service1:k8s-v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5001
+        volumeMounts:
+          - name: sqlite-sqlite-data
+            mountPath: /app/data
+      volumes:
+        - name: sqlite-sqlite-data 
+          emptyDir: {}
+
+---               
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service2
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service2
+  template:
+    metadata:
+      labels:
+        app: service2    
+    spec:
+      containers:
+      - name: service2
+        image: service2:k8s-v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+
+

@@ -1,0 +1,21 @@
+services:
+  
+  service1:
+    build: ./service1
+    container_name: fakestore-service
+    ports:
+    - "5001:5001"
+    volumes:
+    - service1:/app/data
+
+
+  service2:
+    build: ./service2
+    container_name: fakestore-web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - service1    
+
+volumes:
+  service1:

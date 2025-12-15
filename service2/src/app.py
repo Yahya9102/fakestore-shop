@@ -1,17 +1,24 @@
 from flask import Flask, render_template
+import requests
+
+app = Flask(__name__)
+
+
+SERVER1_BASE_URL = "http://localhost:5001/products"
 
 
 
 
+
+@app.get("/products")
 def show_products():
 
-## ÖVNING
-## SKRIV KOD FÖR ATT GÖRA ANROP MOT SERVICE 1
-## RENDERA SVARET I VÅR HTML SIDA
-
+    resp = requests.get(SERVER1_BASE_URL, timeout=10)
+    resp.raise_for_status()
 
     products = resp.json()
     return render_template("products.html", products=products) 
 
 
-
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
