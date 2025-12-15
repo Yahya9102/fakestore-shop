@@ -9,7 +9,7 @@ def set_db_path():
 
 
 def get_connection():
-    conn = sqlite3.connect(set_db_path)
+    conn = sqlite3.connect(set_db_path())
     conn.row_factory = sqlite3.Row
     return conn
 
